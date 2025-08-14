@@ -1,44 +1,31 @@
 using UnityEngine;
 
-public class ParallaxEfecto : MonoBehaviour
+public class ParallexEfecto : MonoBehaviour
 {
-
-    public Transform camara;
-    public float factor;
+    public Transform cam;
+    public float parallaxFactor;
     private float inicioX;
+    private float spriteWidth;
     private float anchoSprite;
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         inicioX = transform.position.x;
         anchoSprite = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
+    // Update is called once per frame
     void Update()
     {
-
-        float temp = (camara.position.x * (1 - factor));
-        float dist = (camara.position.x * factor);
-
-
+        float temp = (cam.position.x * (1 - parallaxFactor));
+        float dist = (cam.position.x * parallaxFactor);
         transform.position = new Vector3(inicioX + dist, transform.position.y, transform.position.z);
-        if (temp > inicioX + anchoSprite)
-            inicioX += anchoSprite;
-        else if (temp < inicioX - anchoSprite)
-            inicioX -= anchoSprite;
-    }
 
-    float CalcularAnchoTotal()
-    {
-        float ancho = 0f;
-        foreach (Transform hijo in transform)
-        {
-            SpriteRenderer sr = hijo.GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                ancho += sr.bounds.size.x;
-            }
-        }
-        return ancho;
+        if (temp > inicioX + spriteWidth) inicioX += spriteWidth;
+
+        else if (temp < inicioX - spriteWidth) inicioX -= spriteWidth;
+
+
     }
 }
+

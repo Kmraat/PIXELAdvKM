@@ -9,18 +9,18 @@ public class MovimientoJugador : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-     rb = GetComponent<Rigidbody2D>();  
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       rb.linearVelocity = entrada * velocidad;
+        rb.linearVelocity = entrada * velocidad;
     }
 
     public void Moverse(InputAction.CallbackContext context)
     {
-       Vector2  valorEntrada = context.ReadValue<Vector2>();
+        Vector2 valorEntrada = context.ReadValue<Vector2>();
 
         if (Mathf.Abs(valorEntrada.x) > Mathf.Abs(valorEntrada.y))
         {
